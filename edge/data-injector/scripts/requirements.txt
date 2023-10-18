@@ -1,0 +1,4 @@
+wheel
+mqtt_client
+requests
+paho.mqtt

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  rabbitmq-broker:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - rabbitmq-bridge
+  data-processor:
+    container_name: data-processor-container
+    image: data-processor
+    networks:
+      - rabbitmq-bridge
+
+
+networks:
+  rabbitmq-bridge:
+    driver: bridge

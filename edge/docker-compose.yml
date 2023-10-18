@@ -1,0 +1,33 @@
+version: '3'
+services:
+  emqx-broker:
+    container_name: emqx-broker
+    image: emqx
+    ports:
+      - "1883:1883"
+    networks:
+      - emqx-bridge
+
+  data-injector:
+    container_name: data-injector
+    image: data-injector
+    depends_on:
+      - emqx-broker
+    networks:
+      - emqx-bridge
+
+  data-preprocessor:
+    container_name: data-preprocessor
+    image: data-preprocessor
+    depends_on:
+      - data-injector
+    networks:
+      - emqx-bridge
+
+networks:
+  emqx-bridge:
+    driver: bridge
+
+  
+  
+
